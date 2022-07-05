@@ -1,2 +1,2 @@
-# node-typescript-init
-Node.js, Typescript, MongoDB (mongoose) Initial Boiler Plate
+# node-lab
+Node 순한맛에서 중간맛으로!
