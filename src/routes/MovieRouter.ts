@@ -15,8 +15,6 @@ router.post('/:movieId/comment', [
     body('comment').notEmpty()
 ], MovieController.createMovieComment);
 
-router.get('/date', MovieController.testDate);
-
 router.get('/:movieId', MovieController.getMovie);
 router.put('/:movieId/comments/:commentId', [
     body('comment').notEmpty()
