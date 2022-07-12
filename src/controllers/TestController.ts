@@ -47,8 +47,8 @@ const testSelfReference = async (req: Request, res: Response) => {
 }
 
 /**
- * @route GET /self-reference
- * @desc Self Reference Test
+ * @route GET /subschedule
+ * @desc Create Subschedule
  * @access Public
  */
 const createSubSchedule = async (req: Request, res: Response) => {
@@ -56,8 +56,9 @@ const createSubSchedule = async (req: Request, res: Response) => {
     // console.log(scheduleId, subScheduleId);
 
     try {
+        // schedule find해서 얘의 category, user 다 받아와야 됨
         const subSchedule = new Schedule({
-            title: title,
+            title: title
         });
 
         await subSchedule.save();
@@ -67,15 +68,12 @@ const createSubSchedule = async (req: Request, res: Response) => {
 
         console.log(parent);
 
-        res.status(statusCode.OK).send(util.success(statusCode.OK, message.SEARCH_MOVIE_SUCCESS));
+        res.status(statusCode.OK).send(util.success(statusCode.OK, message.SEARCH_MOVIE_SUCCESS, parent));
     } catch (error) {
         console.log(error);
         res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, message.INTERNAL_SERVER_ERROR));
     }
 }
-
-
-
 
 export default {
     testDate,
