@@ -145,3 +145,6 @@ yarn.lock
 
 # keys
 keys
+
+# swagger related files
+build/

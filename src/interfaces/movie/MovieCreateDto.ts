@@ -1,7 +1,7 @@
 export interface MovieCreateDto {
     title: string;
     director: string;
-    startDate?: Date;
+    startDate?: string;
     thumbnail?: string;
     story?: string;
 }

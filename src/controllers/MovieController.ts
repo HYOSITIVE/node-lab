@@ -9,6 +9,7 @@ import { request } from "http";
 import { MovieCommentCreateDto } from "../interfaces/movie/MovieCommentCreateDto";
 import { MovieCommentUpdateDto } from "../interfaces/movie/MovieCommentUpdateDto";
 import { MovieOptionType } from "../interfaces/movie/MovieOptionType";
+import dayjs from "dayjs";
 
 /**
  * @route POST /movie
@@ -132,11 +133,10 @@ const getMoviesBySearch = async (req: Request, res: Response) => {
     }
 }
 
-
 export default {
     createMovie,
     createMovieComment,
     getMovie,
     updateMovieComment,
-    getMoviesBySearch
+    getMoviesBySearch,
 }
