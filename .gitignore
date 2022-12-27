@@ -148,3 +148,6 @@ keys
 
 # swagger related files
 build/
+
+# sample files
+src/sample
