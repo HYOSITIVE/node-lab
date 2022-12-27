@@ -1,10 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
 const app = express();
-import connectDB from "./loaders/db";
+import connectMongoDB from "./loaders/db";
 import routes from './routes';
 require('dotenv').config();
 
-connectDB();
+connectMongoDB();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
