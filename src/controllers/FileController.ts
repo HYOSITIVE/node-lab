@@ -89,24 +89,10 @@ const uploadFilesToS3 = async (req: Request, res: Response) => {
 
 /**
  * @route GET /file/video
- * @desc Get Video by Read Stream
+ * @desc Get Video by Only Read Stream
  * @access Public
  */
-const getVideoByStream = async (req: Request, res: Response) => {
-  //   try {
-  //     const streamData = await FileService.getVideoByStream();
-  //     res.write(streamData);
-  //   } catch (error) {
-  //     console.log(error);
-  //     res
-  //       .status(statusCode.INTERNAL_SERVER_ERROR)
-  //       .send(
-  //         util.fail(
-  //           statusCode.INTERNAL_SERVER_ERROR,
-  //           message.INTERNAL_SERVER_ERROR
-  //         )
-  //       );
-  //   }
+const getVideoByOnlyStream = async (req: Request, res: Response) => {
   let stream = fs.createReadStream("./src/sample/sample_video.mp4");
 
   // 큰 데이터를 stream으로 쪼개 data라는 이름의 변수로 전송
@@ -130,5 +116,5 @@ const getVideoByStream = async (req: Request, res: Response) => {
 export default {
   uploadFileToS3,
   uploadFilesToS3,
-  getVideoByStream,
+  getVideoByOnlyStream,
 };

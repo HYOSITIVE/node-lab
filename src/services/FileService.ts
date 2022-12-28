@@ -55,22 +55,7 @@ const createFiles = async (
 
 const getVideoByStream = async (): Promise<any> => {
   try {
-    let stream = fs.createReadStream("./src/sample/sample_video.mp4");
-    var count = 0;
-    stream.on("data", function (data) {
-      count = count + 1;
-      console.log(`data count=` + count);
-
-      //   console.log(`data: ${data}\ndata type: ${typeof data}\n`);
-      return data;
-    });
-    stream.on("end", function () {
-      console.log("end streaming\n");
-    });
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+  } catch (error) {}
 };
 
 export default {
