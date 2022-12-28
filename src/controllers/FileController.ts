@@ -88,13 +88,13 @@ const uploadFilesToS3 = async (req: Request, res: Response) => {
 };
 
 /**
- * @route GET /file/readStream
- * @desc Get Read Stream
+ * @route GET /file/video
+ * @desc Get Video by Read Stream
  * @access Public
  */
-const getReadStream = async (req: Request, res: Response) => {
+const getVideoByStream = async (req: Request, res: Response) => {
   //   try {
-  //     const streamData = await FileService.getReadStream();
+  //     const streamData = await FileService.getVideoByStream();
   //     res.write(streamData);
   //   } catch (error) {
   //     console.log(error);
@@ -107,9 +107,9 @@ const getReadStream = async (req: Request, res: Response) => {
   //         )
   //       );
   //   }
-  var stream = fs.createReadStream("./src/sample/sample_video.mp4");
+  let stream = fs.createReadStream("./src/sample/sample_video.mp4");
   // 2. 잘게 쪼개진 stream 이 몇번 전송되는지 확인하기 위한 count
-  var count = 0;
+  let count = 0;
   // 3. 잘게 쪼개진 data를 전송할 수 있으면 data 이벤트 발생
   stream.on("data", function (data) {
     count = count + 1;
@@ -136,5 +136,5 @@ const getReadStream = async (req: Request, res: Response) => {
 export default {
   uploadFileToS3,
   uploadFilesToS3,
-  getReadStream,
+  getVideoByStream,
 };

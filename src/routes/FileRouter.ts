@@ -10,6 +10,6 @@ router.post(
   upload.array("file"),
   FileController.uploadFilesToS3
 );
-router.get("/video", FileController.getReadStream);
+router.get("/video", FileController.getVideoByStream);
 
 export default router;

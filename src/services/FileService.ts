@@ -53,9 +53,9 @@ const createFiles = async (
   }
 };
 
-const getReadStream = async (): Promise<any> => {
+const getVideoByStream = async (): Promise<any> => {
   try {
-    let stream = fs.createReadStream("./src/sample/sample_mp4.mp4");
+    let stream = fs.createReadStream("./src/sample/sample_video.mp4");
     var count = 0;
     stream.on("data", function (data) {
       count = count + 1;
@@ -76,5 +76,5 @@ const getReadStream = async (): Promise<any> => {
 export default {
   createFile,
   createFiles,
-  getReadStream,
+  getVideoByStream,
 };
