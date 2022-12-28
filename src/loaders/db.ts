@@ -3,7 +3,7 @@ import config from "../config";
 import Movie from "../models/Movie";
 import Review from "../models/Review";
 
-const connectDB = async () => {
+const connectMongoDB = async () => {
   try {
 
     await mongoose.connect(config.mongoURI);
@@ -26,4 +26,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+export default connectMongoDB;
