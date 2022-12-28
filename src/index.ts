@@ -4,10 +4,10 @@ import connectMongoDB from "./loaders/db";
 import routes from "./routes";
 require("dotenv").config();
 
-connectMongoDB();
+// connectMongoDB();
 
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/views"));
+app.use(express.static(__dirname + "/src/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -31,7 +31,7 @@ app.use(function (
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  // res.render("error");
 });
 
 app

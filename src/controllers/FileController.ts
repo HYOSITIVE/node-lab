@@ -113,8 +113,58 @@ const getVideoByOnlyStream = async (req: Request, res: Response) => {
   });
 };
 
+/**
+ * @route GET /file/video-ejs
+ * @desc Get Video by Only Read Stream
+ * @access Public
+ */
+const getVideoByStream = async (req: Request, res: Response) => {
+  // ejs에 videoSource 뿌려 줌
+  res.render("video", {
+    title: "Streaming Test",
+    videoSource: `../sample/sample_video`,
+  });
+  // 파일 크기와 요청으로 부터의 범위 획득
+  const fullPath = `src/sample/sample_video.mp4`;
+  const fileStat = fs.statSync(fullPath);
+  const { size } = fileStat;
+  const { range } = req.headers;
+
+  // 범위에 대한 요청이 있을 경우
+  if (range) {
+    // bytes= 부분을 없애고 - 단위로 문자열을 자름
+    const parts = range.replace(/bytes=/, "").split("-");
+    // 시작 부분의 문자열을 정수형으로 변환
+    const start = parseInt(parts[0]);
+    // 끝 부분의 문자열을 정수형으로 변환 (끝 부분이 없으면 총 파일 사이즈에서 - 1)
+    const end = parts[1] ? parseInt(parts[1]) : size - 1;
+    // 내보낼 부분의 길이
+    const chunk = end - start + 1;
+    // 시작 부분과 끝 부분의 스트림을 읽음
+    const stream = fs.createReadStream(fullPath, { start, end });
+    // 응답
+    res.writeHead(206, {
+      "Content-Range": `bytes ${start}-${end}/${size}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": chunk,
+      "Content-Type": "video/mp4",
+    });
+    // 스트림을 내보냄
+    stream.pipe(res);
+  } else {
+    // 범위에 대한 요청이 아님
+    res.writeHead(200, {
+      "Content-Length": size,
+      "Content-Type": "video/mp4",
+    });
+    // 스트림을 만들고 응답에 실어보냄
+    fs.createReadStream(fullPath).pipe(res);
+  }
+};
+
 export default {
   uploadFileToS3,
   uploadFilesToS3,
   getVideoByOnlyStream,
+  getVideoByStream,
 };
