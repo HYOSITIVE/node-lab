@@ -107,7 +107,7 @@ const getReadStream = async (req: Request, res: Response) => {
   //         )
   //       );
   //   }
-  var stream = fs.createReadStream("./src/sample/sample_mp4.mp4");
+  var stream = fs.createReadStream("./src/sample/sample_video.mp4");
   // 2. 잘게 쪼개진 stream 이 몇번 전송되는지 확인하기 위한 count
   var count = 0;
   // 3. 잘게 쪼개진 data를 전송할 수 있으면 data 이벤트 발생
