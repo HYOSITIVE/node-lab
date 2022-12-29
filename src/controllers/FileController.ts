@@ -170,6 +170,9 @@ const getVideoByStream = async (req: Request, res: Response) => {
  * @access Public
  */
 const getVideoByUrl = async (req: Request, res: Response) => {
+  res.writeHead(200, {
+    "Content-Type": "video/mp4",
+  });
   const mp4Url: string = process.env.SAMPLE_VIDEO_URL!;
   // got.stream(mp4Url).pipe(res);
   https.get(mp4Url, (stream) => {
