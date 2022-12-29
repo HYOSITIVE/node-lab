@@ -12,5 +12,6 @@ router.post(
 );
 router.get("/video-simple", FileController.getVideoByOnlyStream);
 router.get("/video-ejs", FileController.getVideoByStream);
+router.get("/video-url", FileController.getVideoByUrl);
 
 export default router;
