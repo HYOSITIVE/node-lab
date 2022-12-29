@@ -5,6 +5,8 @@ import message from "../modules/responseMessage";
 import util from "../modules/util";
 import { FileService } from "../services";
 import fs from "fs";
+import got from "got";
+import https from "https";
 
 /**
  * @route POST /file/upload
@@ -162,9 +164,23 @@ const getVideoByStream = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * @route GET /file/video-url
+ * @desc Get Video Stream by Url
+ * @access Public
+ */
+const getVideoByUrl = async (req: Request, res: Response) => {
+  const mp4Url: string = process.env.SAMPLE_VIDEO_URL!;
+  // got.stream(mp4Url).pipe(res);
+  https.get(mp4Url, (stream) => {
+    stream.pipe(res);
+  });
+};
+
 export default {
   uploadFileToS3,
   uploadFilesToS3,
   getVideoByOnlyStream,
   getVideoByStream,
+  getVideoByUrl,
 };
