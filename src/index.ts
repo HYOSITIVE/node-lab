@@ -1,10 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
 const app = express();
-import connectMongoDB from "./loaders/db";
+import "reflect-metadata";
+import { connectTypeORM } from "./loaders/db";
 import routes from "./routes";
 require("dotenv").config();
 
 // connectMongoDB();
+connectTypeORM();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src/views"));

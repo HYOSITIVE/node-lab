@@ -41,9 +41,13 @@
     "mongoose": "^6.3.1",
     "multer": "^1.4.4",
     "multer-s3": "^2.10.0",
+    "pg": "^8.8.0",
     "prettier": "^2.8.1",
+    "reflect-metadata": "^0.1.13",
     "swagger-cli": "^4.0.4",
     "swagger-ui-express": "^4.4.0",
+    "typeorm": "^0.3.11",
+    "typeorm-naming-strategies": "^4.1.0",
     "yamljs": "^0.3.0"
   }
 }
