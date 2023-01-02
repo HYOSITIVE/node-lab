@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DataSource } from "typeorm";
+import { myDataSource } from "../config/dbConfig";
 import config from "../config";
 import Movie from "../models/Movie";
 import Review from "../models/Review";
@@ -27,15 +27,6 @@ const connectMongoDB = async () => {
 
 const connectTypeORM = async () => {
   try {
-    const myDataSource = new DataSource({
-      type: "postgres",
-      host: config.pgHost,
-      port: 5432,
-      username: config.pgUser,
-      password: config.pgPassword,
-      database: config.pgDatabase,
-    });
-
     await myDataSource.initialize();
     console.log("PostgreSQL Data Source has been initialized!");
   } catch (error) {
