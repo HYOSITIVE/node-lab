@@ -2,10 +2,10 @@ import app from "./index";
 import config from "./config";
 
 app
-  .listen(process.env.PORT, () => {
+  .listen(config.port, () => {
     console.log(`
     ################################################
-          🛡️  Server listening on port ${process.env.PORT}🛡️
+          🛡️  Server listening on port ${config.port}🛡️
     ################################################
   `);
   })
