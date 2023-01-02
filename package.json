@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "build": "tsc && node dist",
     "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile config/swagger.yaml --type yaml",
-    "predev": "yarn run api-docs"
+    "swagger-yml-merge": "yarn run api-docs",
+    "swagger": "node ./src/swagger/swagger.js"
   },
   "author": "",
   "license": "ISC",
