@@ -3,6 +3,9 @@ const app = express();
 import "reflect-metadata";
 import { connectTypeORM } from "./loaders/db";
 import routes from "./routes";
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+import path from "path";
 require("dotenv").config();
 
 // connectMongoDB();
@@ -13,6 +16,19 @@ app.use(express.static(__dirname + "/src/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// normal swagger configuration
+// const swaggerSpec = YAML.load(path.join(__dirname, "./config/swagger.yaml"));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// swagger configuration with swagger-autogen
+import swaggerFile from "./swagger/swagger-output.json";
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerFile, { explorer: true })
+);
 
 app.use(routes); //라우터
 // error handler
@@ -36,15 +52,4 @@ app.use(function (
   // res.render("error");
 });
 
-app
-  .listen(process.env.PORT, () => {
-    console.log(`
-    ################################################
-          🛡️  Server listening on port ${process.env.PORT}🛡️
-    ################################################
-  `);
-  })
-  .on("error", (err) => {
-    console.error(err);
-    process.exit(1);
-  });
+export default app;
