@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc && node dist",
-    "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile build/swagger.yaml --type yaml",
+    "api-docs": "swagger-cli bundle ./src/swagger/openapi.yaml --outfile config/swagger.yaml --type yaml",
     "predev": "yarn run api-docs"
   },
   "author": "",
