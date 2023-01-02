@@ -17,9 +17,18 @@ app.use(express.static(__dirname + "/src/views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const swaggerSpec = YAML.load(path.join(__dirname, "./config/swagger.yaml"));
+// normal swagger configuration
+// const swaggerSpec = YAML.load(path.join(__dirname, "./config/swagger.yaml"));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// swagger configuration with swagger-autogen
+import swaggerFile from "./swagger/swagger-output.json";
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerFile, { explorer: true })
+);
 
 app.use(routes); //라우터
 // error handler
